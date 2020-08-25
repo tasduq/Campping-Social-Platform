@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info " style="margin-bottom: 12px;">
+  <a class="navbar-brand" href="/">YelpCamp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse">
+    
+    <ul class="nav navbar-nav container justify-content-end align-items-start">
+		<% if(!nowuser){ %>
+		     <li class="nav-item px-2 justify-content-start ">
+            <a class="nav-link" href="/register">Signup</a>
+            
+            </li>
+           <li class="nav-item px-2 justify-content-start"> 
+            <a class="nav-link" href="/login">login</a>
+           </li>
+		
+		<% }else{ %>
+		      <li class="nav-item px-2 justify-content-start"> 
+                <a class="nav-link" href="#">Signed in as <%=nowuser.username%></a>
+             </li>
+		     <li class="nav-item px-2 justify-content-start"> 
+                <a class="nav-link" href="/logout">logout</a>
+             </li>
+		<% } %>
+        
+		
+    </ul>
+  </div>
+</nav>
+	<div class="container">
+		<% if(error && error.length>0){ %>
+			<div class="alert alert-danger" role="alert"><%= error %></div>
+		<% } %>
+		<% if(success && success.length>0){ %>
+			<div class="alert alert-success" role="alert"><%= success %></div>
+		<% } %>    
+	</div>
+	
+
+<!-- <h1>
+	Signup page!!!
+</h1>
+
+<form action="/register" method="POST">
+	<input type="text" placeholder="username" name="username">
+	<input type="password" placeholder="password" name="password">
+	<button>
+		Submit
+	</button>
+</form> -->
+	
+	<div class="container">
+  	<h1 class="text-center " style="text-transform: uppercase; color: black;">Signup Here</h1>
+  	<form action="/register" method="POST">
+  		<div style="width: 30%; margin: 50px auto; ">
+  			<input class="text-center form-control form-group" type="text" placeholder="username" name="username" >
+	        <input class="text-center form-control form-group" type="password" placeholder="password" name="password">
+	        <button class="btn btn-primary btn-md btn-block">Signup</button>
+  		</div>
+	  
+    </form>
+    
+  </div>
+	
+</body>
+</html>		

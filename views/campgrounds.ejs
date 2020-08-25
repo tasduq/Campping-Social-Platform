@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-info " style="margin-bottom: 12px;">
+  <a class="navbar-brand" href="/">YelpCamp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse">
+    
+    <ul class="nav navbar-nav container justify-content-end align-items-start">
+		<% if(!nowuser){ %>
+		     <li class="nav-item px-2 justify-content-start ">
+            <a class="nav-link" href="/register">Signup</a>
+            
+            </li>
+           <li class="nav-item px-2 justify-content-start"> 
+            <a class="nav-link" href="/login">login</a>
+           </li>
+		
+		<% }else{ %>
+		      <li class="nav-item px-2 justify-content-start"> 
+                <a class="nav-link" href="#">Signed in as <%=nowuser.username%></a>
+             </li>
+		     <li class="nav-item px-2 justify-content-start"> 
+                <a class="nav-link" href="/logout">logout</a>
+             </li>
+		<% } %>
+        
+		
+    </ul>
+  </div>
+</nav>
+	<div class="container">
+		<% if(error && error.length>0){ %>
+			<div class="alert alert-danger" role="alert"><%= error %></div>
+		<% } %>
+		<% if(success && success.length>0){ %>
+			<div class="alert alert-success" role="alert"><%= success %></div>
+		<% } %>    
+	</div>
+	
+	
+	
+	<header class="jumbotron" style="background-image: url(https://cdn.pixabay.com/photo/2015/06/08/15/12/tents-801926_960_720.jpg); background-repeat: none; background-size: cover; ">
+		<h1 class="text-center " style="text-transform: uppercase; color: white;">Our Campgrounds</h1>
+		<p class="text-center" style="color: white;">Here you can find best campgrounds from all over world</p>
+		<div class="row">
+          <div class="col text-center">
+            <a class="btn btn-info btn-lg" href="/campgrounds/new" role="button" style="">Add New CampGround</a>
+          </div>
+        </div>
+		
+    </header>
+	
+	<div class="container">
+		
+	<div class="row" style="display: flex; flex-wrap: wrap; height: 30px;">	
+	<% for(var i=0;i<campgrounds.length;i++){ %>
+	<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">	
+	<div class="card" style="width: 16rem;">
+  <img src="<%= campgrounds[i].image %>" class="card-img-top" alt="..." style="height: 12rem;">
+  <div class="card-body">
+    <h4 class="card-title"><%= campgrounds[i].name %></h4>
+    
+    <a href="/campgrounds/<%= campgrounds[i]._id %>" class="btn btn-primary">EXPLORE</a>
+  </div>
+</div>	
+</div>	
+<% } %>	
+		</div>		
+
+	
+	</div>
+
+	
+
+</body>
+</html>	
+	
